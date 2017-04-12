@@ -42,6 +42,14 @@ MapWrapper.prototype = {
         this.addMarker(event.latLng);
     }.bind(this))
     // bind(this) here refers to the larger context of this and not just the callback
-  }
+  },
+
+  geoLocate: function(){
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var center = {lat: position.coords.latitude, lng: position.coords.longitude}; 
+        this.googleMap.setCenter(center); 
+        this.addMarker(center);
+      }.bind(this)); 
+    }
 
 }
